@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unser Schulkalender</title>
-<style>
-body {font-family:Arial,sans-serif;background:#f4f5fa;text-align:center;padding:40px 15px;color:#252536}
-h1 {color:#7454d6}
-.card {background:white;border-radius:18px;padding:25px;max-width:400px;margin:auto;box-shadow:0 4px 15px #0001}
-</style>
-</head>
-<body>
-<div class="card">
-<h1>❤️ Dein Schulkalender</h1>
-<h2>Maler- und Lackierermeister</h2>
-<p>Schuljahr 2026/2027</p>
-<p>Dein persönlicher Schulkalender kommt bald! ❤️</p>
-</div>
-</body>
-</html>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#7857d8"><title>Dein Schulkalender · GI 1</title><style>
+:root{font-family:system-ui,-apple-system,Arial,sans-serif;color:#26223a;background:#f7f5fc}*{box-sizing:border-box}body{margin:0}.wrap{max-width:650px;margin:auto;padding:18px 14px 45px}header{background:linear-gradient(125deg,#7857d8,#a07be9);color:white;border-radius:20px;padding:22px;margin-bottom:16px}h1{font-size:25px;margin:0 0 6px}header p{margin:0;opacity:.92;font-size:14px}.panel{background:white;border:1px solid #e7e2f0;border-radius:17px;padding:15px;margin:12px 0;box-shadow:0 2px 12px #21143d09}.controls{display:flex;align-items:center;justify-content:space-between;gap:8px}.controls button{background:#f0eafb;border:0;border-radius:10px;color:#4e328c;font-size:21px;padding:8px 16px;cursor:pointer}.controls h2{font-size:19px;margin:0}.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.week{font-size:11px;color:#777087;text-align:center;padding:12px 0 8px}.day{border:1px solid #ebe8f0;border-radius:10px;min-height:62px;padding:5px 3px;background:white;color:#282439;text-align:left;display:flex;flex-direction:column;gap:5px;cursor:pointer;overflow:hidden}.day.blank{border:0;background:transparent}.day.active{outline:2px solid #7857d8;outline-offset:-2px}.day strong{font-size:12px;padding-left:3px}.tag{font-size:9px;border-radius:4px;padding:4px 3px;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#16202a;font-weight:650}.online{background:#44c2f0}.praxis{background:#a8d67b}.frei{background:#ffe269}.pruefung{background:#ff6464}.hinweis{background:#e9e4f1}.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;margin:12px 0 0}.legend span{display:flex;align-items:center;gap:5px}.dot{width:11px;height:11px;border-radius:3px}.detail h3{margin:0 0 10px;font-size:16px}.entry{border-radius:9px;padding:12px;margin:7px 0;font-weight:650;font-size:14px}.muted{color:#716a80;font-size:13px;line-height:1.5}.foot{font-size:12px;color:#756e82;line-height:1.5}a{color:#6042aa}@media(min-width:450px){.day{min-height:78px}.tag{font-size:11px}}
+</style></head><body><main class="wrap"><header><h1>❤️ Dein Schulkalender</h1><p>Maler- und Lackierermeister · 2026/2027</p><p>Deine Gruppe: <b>GI 1</b></p></header><section class="panel"><div class="controls"><button id="prev" aria-label="Vorheriger Monat">‹</button><h2 id="month"></h2><button id="next" aria-label="Nächster Monat">›</button></div><div class="grid" id="week"></div><div class="grid" id="calendar"></div><div class="legend"><span><i class="dot online"></i>Online</span><span><i class="dot praxis"></i>Präsenz/Praxis</span><span><i class="dot frei"></i>Feiertag</span><span><i class="dot pruefung"></i>Prüfung</span></div></section><section class="panel detail"><h3 id="date"></h3><div id="entries"></div></section><p class="foot">Quelle: Kursplanung Maler und Lackierermeister 2026/2027, Schwerpunkt GI, Stand 22.10.2026. Nur Einträge für GI 1 sowie die gemeinsamen Termine vor Januar. Tage ohne Eintrag sind nicht automatisch schulfrei. Änderungen im offiziellen Schulplan haben Vorrang.</p></main><script>
+const ev={};function add(y,m,days,title,type){for(const d of days){const key=[y,String(m).padStart(2,'0'),String(d).padStart(2,'0')].join('-');(ev[key]??=[]).push({title,type});}}function span(a,b){return Array.from({length:b-a+1},(_,i)=>a+i)}
+// Oktober bis Dezember: gemeinsamer Bereich, ab Januar ausschließlich GI 1.
+add(2026,10,[22],'Alle (gemeinsamer Termin)','hinweis');add(2026,10,[23,24,25],'Hegne','praxis');add(2026,10,[26,28],'Online','online');
+add(2026,11,[2,4,7,9,11,16,18,23,25,28,30],'Online','online');add(2026,11,[20,21,22],'Hegne','praxis');
+add(2026,12,[2,7,9,14,16],'Online','online');add(2026,12,[11,12,13],'Hegne','praxis');add(2026,12,[25,26],'Feiertag','frei');
+add(2027,1,[1,6],'Feiertag','frei');add(2027,1,[7,8,9],'Hegne','praxis');add(2027,1,span(18,22),'Erf. Praxis','praxis');add(2027,1,[25,27,30],'Online','online');
+add(2027,2,span(1,5),'Erf. Praxis','praxis');add(2027,2,[8,10,13,15,17,20],'Online','online');add(2027,2,span(22,26),'Erf. Praxis','praxis');add(2027,2,[27],'Online','online');
+add(2027,3,[1,3,8,10,13,15],'Online','online');add(2027,3,[26,28,29],'Feiertag','frei');add(2027,3,[27],'Online','online');
+add(2027,4,[1],'HF2+3','pruefung');add(2027,4,[2],'FHF 1','pruefung');add(2027,4,span(12,16),'Erf. Praxis','praxis');add(2027,4,[19,20,21],'Erf. Praxis','praxis');add(2027,4,[22,23,26,27],'Teil 1','pruefung');add(2027,4,[28],'Teil 2','pruefung');add(2027,4,[29],'Fachgespräch','pruefung');
+add(2027,5,[1,6,16,17],'Feiertag','frei');
+const names=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];let year=2026,month=11,selected='2026-11-20';const $=id=>document.getElementById(id);const week=['Mo','Di','Mi','Do','Fr','Sa','So'];week.forEach(w=>{let el=document.createElement('div');el.className='week';el.textContent=w;$('week').append(el)});
+function detail(){const [y,m,d]=selected.split('-').map(Number);$('date').textContent=new Intl.DateTimeFormat('de-DE',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(y,m-1,d));$('entries').replaceChildren();const items=ev[selected]||[];if(!items.length){const p=document.createElement('p');p.className='muted';p.textContent='Kein Termin im übermittelten Plan eingetragen. Das bedeutet nicht automatisch schulfrei.';$('entries').append(p)}else items.forEach(e=>{const div=document.createElement('div');div.className='entry '+e.type;div.textContent=e.title;$('entries').append(div)})}
+function draw(){$('month').textContent=names[month-1]+' '+year;const cal=$('calendar');cal.replaceChildren();const offset=(new Date(year,month-1,1).getDay()+6)%7;for(let i=0;i<offset;i++){let el=document.createElement('div');el.className='day blank';cal.append(el)}const n=new Date(year,month,0).getDate();for(let d=1;d<=n;d++){const key=[year,String(month).padStart(2,'0'),String(d).padStart(2,'0')].join('-');const btn=document.createElement('button');btn.className='day'+(key===selected?' active':'');btn.setAttribute('aria-label',`${d}. ${names[month-1]} ${year}`);const num=document.createElement('strong');num.textContent=d;btn.append(num);(ev[key]||[]).forEach(e=>{const tag=document.createElement('span');tag.className='tag '+e.type;tag.textContent=e.title;btn.append(tag)});btn.onclick=()=>{selected=key;draw()};cal.append(btn)}$('prev').disabled=year===2026&&month===10;$('next').disabled=year===2027&&month===5;detail()}
+$('prev').onclick=()=>{if(year===2026&&month===10)return;month--;if(month<1){month=12;year--}selected=[year,String(month).padStart(2,'0'),'01'].join('-');draw()};$('next').onclick=()=>{if(year===2027&&month===5)return;month++;if(month>12){month=1;year++}selected=[year,String(month).padStart(2,'0'),'01'].join('-');draw()};draw();
+</script></body></html>
